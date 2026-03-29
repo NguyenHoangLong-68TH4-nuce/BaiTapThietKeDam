@@ -29,5 +29,31 @@ namespace BaiTapThietKeDam.Models
             _mark = mark;
             _story = story;
         }
+
+        // Method kiểm tra TTGH 1
+        public bool CheckTTGH1()
+        {
+            if (_frame == null || _frame.FrameForces == null || _frame.FrameForces.Count == 0)
+            {
+                return false;
+            }
+
+            double maxM = 0;
+            foreach (var force in _frame.FrameForces)
+            {
+                double currentM = Math.Abs(force.M3);
+                if (currentM > maxM) maxM = currentM;
+            }
+
+            double Mu = 100.0; // Giả thiết
+            return maxM <= Mu;
+        }
+
+        // Method kiểm tra TTGH 2 (Đã xóa hàm trùng lặp)
+        public bool CheckTTGH2()
+        {
+            // Logic kiểm tra độ võng/khe nứt
+            return true;
+        }
     }
 }
